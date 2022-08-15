@@ -1,7 +1,7 @@
 #include "sort.h"
 
 /**
- * swap - switches value of first input with the value of the second input
+ * swap - switches value of first input withthe value of the second input
  * @a: First value to swap
  * @b: Second value to swap
  */
