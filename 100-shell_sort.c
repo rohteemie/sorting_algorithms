@@ -1,42 +1,34 @@
-
 #include "sort.h"
 
 /**
- * shell_sort - sort array with shell method
- * @array: array to sort
- * @size: size of the array
- *
- * Return: nothing
-*/
-
+ * shell_sort - sory array using quick sort method
+ * @array: input array
+ * @size: input size of array
+ */
 void shell_sort(int *array, size_t size)
 {
-	int in = 0, out = 0, range = 1, aux = 0;
+	size_t gap = 1, i, j;
+	int tmp;
 
-	if (!array || size < 2)
+	if (size == 0 || size == 1)
 		return;
-
-	while (range < (int) size / 3)
-		range = range * 3 + 1;
-
-	while (range > 0)
+	while (gap < size)
+		gap = gap * 3 + 1;
+	gap = (gap - 1) / 3;
+	while (gap > 0)
 	{
-		out = range;
-		while (out < (int) size)
+		i = gap;
+		while (i < size)
 		{
-			aux = array[out];
-			in = out;
-
-			while (in > range - 1 && array[in - range] >= aux)
+			tmp = array[i];
+			for (j = i; j >= gap && array[j - gap] > tmp; j -= gap)
 			{
-				array[in] = array[in - range];
-				in = in - range;
+				array[j] = array[j - gap];
 			}
-
-			array[in] = aux;
-			out++;
+			array[j] = tmp;
+			i++;
 		}
 		print_array(array, size);
-		range = (range - 1) / 3;
+		gap = (gap - 1) / 3;
 	}
 }
